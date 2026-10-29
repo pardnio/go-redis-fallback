@@ -1,0 +1,62 @@
+[
+  {
+    "package": ".",
+    "name": "Cache",
+    "kind": "type"
+  },
+  {
+    "package": ".",
+    "name": "Config",
+    "kind": "type"
+  },
+  {
+    "package": ".",
+    "name": "EmailConfig",
+    "kind": "type"
+  },
+  {
+    "package": ".",
+    "name": "Log",
+    "kind": "type"
+  },
+  {
+    "package": ".",
+    "name": "Logger",
+    "kind": "type"
+  },
+  {
+    "package": ".",
+    "name": "Options",
+    "kind": "type"
+  },
+  {
+    "package": ".",
+    "name": "Path",
+    "kind": "type"
+  },
+  {
+    "package": ".",
+    "name": "Redis",
+    "kind": "type"
+  },
+  {
+    "package": ".",
+    "name": "RedisFallback",
+    "kind": "type"
+  },
+  {
+    "package": ".",
+    "name": "New",
+    "kind": "func"
+  },
+  {
+    "package": ".",
+    "name": "WriteRequest",
+    "kind": "type"
+  },
+  {
+    "package": ".",
+    "name": "Writer",
+    "kind": "type"
+  }
+]

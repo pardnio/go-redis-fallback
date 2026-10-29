@@ -1,0 +1,119 @@
+{
+  "home_title": {
+    "en": "Go Redis Cache with Fallback | go-redis-fallback",
+    "zh": "Redis 快取斷線降級｜go-redis-fallback"
+  },
+  "descriptions": {
+    "en": {
+      "home": "Archived Go Redis cache library by Pardn Chiu (邱敬幃), final release v1.0.0: when Redis is down, reads and writes fall back to memory and local JSON.",
+      "getting-started": "Install go-redis-fallback with go get, create the DBPath directory, start an instance, and confirm the current mode from its logs.",
+      "core-concepts": "The three storage tiers and three operating modes of go-redis-fallback, and which tier Get, Set, and Del use in each mode.",
+      "architecture": "One overview diagram of go-redis-fallback: read path, batch file writer, health-check ticker, recovery flow, and expiry sweep.",
+      "read-fallback": "How Get reads memory first, retries Redis MaxRetry times, and switches to fallback mode within the same call when Redis fails.",
+      "read-fallback-local": "How Get restores values from MD5-sharded local JSON files in fallback mode, and why restored numbers come back as float64.",
+      "read-repair": "Why a normal-mode memory hit writes the value back to Redis in the background, and how it restores keys stored without a TTL.",
+      "read-expiry": "How go-redis-fallback stores TTL in whole seconds, checks expiry on every read tier, and sweeps expired entries every 30 seconds.",
+      "recovery": "What switches go-redis-fallback into fallback mode, how the TimeToCheck ping detects a recovered Redis, and startup recovery.",
+      "recovery-resync": "How recovery loads local files, pipelines entries back to Redis with their remaining TTL in batches of 100, and deletes the files.",
+      "write-path": "How Set and Del behave in normal and fallback modes, and how fallback writes merge by key in a queue and flush to disk in batches.",
+      "file-storage": "Path rule and JSON format of go-redis-fallback local files: three-level MD5 sharding, Cache fields, and when files are deleted.",
+      "configuration": "go-redis-fallback Config fields and defaults for Redis, Options, and Log, how invalid values are corrected, and tuning tips.",
+      "api-reference": "Signatures, return values, errors, and panics of New, Get, Set, Del, and Close in go-redis-fallback.",
+      "api-reference-types": "Every exported type in go-redis-fallback: Config, Redis, Options, Log, Cache, RedisFallback, and the internal Writer types."
+    },
+    "zh": {
+      "home": "邱敬幃開發的 Go Redis 快取斷線降級函式庫，已封存、最終版本 v1.0.0：Redis 斷線時讀寫改由記憶體與本地 JSON 接手，恢復後回灌。",
+      "getting-started": "以 go get 安裝 go-redis-fallback、預先建立 DBPath 目錄、建立實例並從日誌確認目前運作模式。",
+      "core-concepts": "go-redis-fallback 的三層儲存與三種運作模式，以及 Get、Set、Del 在各模式下使用哪一層。",
+      "architecture": "go-redis-fallback 架構概覽：讀取路徑、批次寫檔、健康檢查 Ticker、恢復流程與過期掃除的關係。",
+      "read-fallback": "正常模式下 Get 如何先查記憶體、重試 Redis，並在失敗時於同一次呼叫內切入 fallback 模式。",
+      "read-fallback-local": "Fallback 模式下 Get 如何從 MD5 分片的本地 JSON 檔還原資料，以及還原後的型別變化。",
+      "read-repair": "正常模式記憶體命中時為何在背景寫回 Redis，以及它如何補回未設 TTL 的鍵。",
+      "read-expiry": "go-redis-fallback 如何以整數秒儲存 TTL、在每一層讀取時判斷過期，以及每 30 秒的過期掃除。",
+      "recovery": "什麼情況會切入 fallback、健康檢查如何以 TimeToCheck 間隔偵測 Redis 恢復，以及啟動時的恢復。",
+      "recovery-resync": "恢復時如何載入本地檔、以剩餘 TTL 每 100 筆 Pipeline 寫回 Redis 並刪除檔案，以及哪些資料不會寫回。",
+      "write-path": "Set 與 Del 在正常與 fallback 模式下的行為，以及 fallback 寫入如何經佇列合併後批次落檔。",
+      "file-storage": "go-redis-fallback 本地檔案的路徑規則與 JSON 格式：MD5 三層分片、Cache 欄位與檔案刪除時機。",
+      "configuration": "go-redis-fallback 的 Config 欄位與預設值：Redis、Options、Log，無效值修正方式與調整建議。",
+      "api-reference": "go-redis-fallback 的 New、Get、Set、Del、Close 簽章、回傳值、錯誤與 panic 條件。",
+      "api-reference-types": "go-redis-fallback 所有匯出型別：Config、Redis、Options、Log、Cache、RedisFallback 與內部型別。"
+    }
+  },
+  "keywords": {
+    "en": {
+      "home": "Go Redis cache, Redis cache fallback, Redis down, graceful degradation, go-redis",
+      "getting-started": "go-redis-fallback install, go get, Redis fallback example",
+      "core-concepts": "Redis fallback modes, memory cache, local JSON storage",
+      "architecture": "Redis fallback architecture, health check, recovery flow",
+      "read-fallback": "Redis read fallback, Redis retry, failover on read",
+      "read-fallback-local": "Redis offline read, local JSON cache, file fallback",
+      "read-repair": "read-repair, Redis write-back, cache resync",
+      "read-expiry": "Redis TTL, lazy expiry, cache expiration sweep",
+      "recovery": "Redis health check, auto recovery, fallback mode switch",
+      "recovery-resync": "Redis resync, pipeline batch, remaining TTL",
+      "write-path": "Redis fallback write, batch file writer, write queue",
+      "file-storage": "fallback file format, MD5 sharding, Cache JSON",
+      "configuration": "go-redis-fallback config, MaxRetry, TimeToCheck, DBPath",
+      "api-reference": "go-redis-fallback API, New, Get, Set, Del, Close",
+      "api-reference-types": "go-redis-fallback types, Config, Cache, Options"
+    },
+    "zh": {
+      "home": "Redis 快取, Redis 斷線降級, Redis 降級, Go Redis, go-redis",
+      "getting-started": "go-redis-fallback 安裝, go get, Redis 降級範例",
+      "core-concepts": "Redis 降級模式, 記憶體快取, 本地 JSON 儲存",
+      "architecture": "Redis 降級架構, 健康檢查, 恢復流程",
+      "read-fallback": "Redis 讀取降級, Redis 重試, 讀取失敗切換",
+      "read-fallback-local": "Redis 斷線讀取, 本地 JSON 快取, 檔案備援",
+      "read-repair": "讀取修補, Redis 回寫, 快取同步",
+      "read-expiry": "Redis TTL, 惰性過期, 快取過期掃除",
+      "recovery": "Redis 健康檢查, 自動恢復, fallback 模式切換",
+      "recovery-resync": "Redis 回灌, Pipeline 批次, 剩餘 TTL",
+      "write-path": "Redis 降級寫入, 批次寫檔, 寫入佇列",
+      "file-storage": "備援檔案格式, MD5 分片, Cache JSON",
+      "configuration": "go-redis-fallback 設定, MaxRetry, TimeToCheck, DBPath",
+      "api-reference": "go-redis-fallback API, New, Get, Set, Del, Close",
+      "api-reference-types": "go-redis-fallback 型別, Config, Cache, Options"
+    }
+  },
+  "brand_keywords": [
+    "邱敬幃",
+    "Pardn Chiu",
+    "pardnchiu"
+  ],
+  "person": {
+    "id": "https://pardn.io/#pardnchiu",
+    "name": "Pardn Chiu",
+    "alt_names": [
+      "邱敬幃",
+      "Chiu Ching-Wei",
+      "pardnchiu"
+    ],
+    "same_as": [
+      "https://pardn.io/",
+      "https://www.linkedin.com/in/pardnchiu",
+      "https://github.com/pardnchiu",
+      "https://dev.to/pardnchiu",
+      "https://x.com/pardnchiu"
+    ]
+  },
+  "organization": {
+    "id": "https://pardn.io/#organization",
+    "url": "https://pardn.io/",
+    "name": "Pardn Co., Ltd",
+    "name_zh": "帕登國際有限公司",
+    "same_as": [
+      "https://github.com/pardnio"
+    ]
+  },
+  "tagline": "Taiwan · Infrastructure Engineering",
+  "og_image": "https://pardn.io/logo.jpg",
+  "favicon": "/favicon.png",
+  "x_default": "",
+  "ai_usage": {
+    "train": "y",
+    "input": "y",
+    "search": "y"
+  },
+  "programming_language": "Go",
+  "license_url": "https://opensource.org/licenses/MIT"
+}
